@@ -1,12 +1,22 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Head from "next/head";
 import Link from "next/link";
 
 export default function ResultPage() {
-  const searchParams = useSearchParams();
-  const score = searchParams.get("score");
+  const router = useRouter();
+  const [score, setScore] = useState<string | null>(null);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const queryScore = searchParams.get('score');
+    if (queryScore) {
+      setScore(queryScore);
+    }
+  }, []);
+
   const appUrl = "https://your-app-url.com"; // 実際のアプリのURLをここに設定
   const ogImageUrl = `${appUrl}/images/result-${score}.png`; // scoreに応じたOGP画像を設定
 
@@ -14,6 +24,10 @@ export default function ResultPage() {
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     tweetText
   )}&url=${encodeURIComponent(appUrl)}`;
+
+  if (!score) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
