@@ -17,7 +17,7 @@ export default function ResultPage() {
     }
   }, []);
 
-  const appUrl = "https://your-app-url.com"; // 実際のアプリのURLをここに設定
+  const appUrl = "https://runteq-dependency-checker.vercel.app"; // 実際のアプリのURLをここに設定
   const ogImageUrl = `${appUrl}/images/result-${score}.png`; // scoreに応じたOGP画像を設定
 
   const tweetText = `私のRUNTEQ依存度は ${score}% でした！`;
