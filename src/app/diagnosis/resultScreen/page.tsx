@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Head from "next/head";
 import Link from "next/link";
 
 export default function ResultPage() {
@@ -11,7 +10,7 @@ export default function ResultPage() {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
-    const queryScore = searchParams.get('score');
+    const queryScore = searchParams.get("score");
     if (queryScore) {
       setScore(queryScore);
     }
@@ -20,7 +19,7 @@ export default function ResultPage() {
   const appUrl = "https://runteq-dependency-checker.vercel.app"; // 実際のアプリのURLをここに設定
   const ogImageUrl = `${appUrl}/images/result-${score}.png`; // scoreに応じたOGP画像を設定
 
-  const tweetText = `私のRUNTEQ依存度は ${score}% でした！`;
+  const tweetText = `私のRUNTEQ依存度は ${score}% でした！ #RUNTEQ依存度チェッカー #RUNTEQ総選挙`;
   const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     tweetText
   )}&url=${encodeURIComponent(appUrl)}`;
@@ -31,23 +30,6 @@ export default function ResultPage() {
 
   return (
     <>
-      <Head>
-        <meta property="og:title" content="RUNTEQ依存度診断結果" />
-        <meta
-          property="og:description"
-          content={`私のRUNTEQ依存度は ${score}% でした！`}
-        />
-        <meta property="og:image" content={ogImageUrl} />
-        <meta property="og:url" content={appUrl} />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="RUNTEQ依存度診断結果" />
-        <meta
-          name="twitter:description"
-          content={`私のRUNTEQ依存度は ${score}% でした！`}
-        />
-        <meta name="twitter:image" content={ogImageUrl} />
-      </Head>
       <div className="min-h-screen bg-gradient-to-r from-green-200 to-blue-200 flex items-center justify-center p-4">
         <div className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-md text-center">
           <h1 className="text-3xl md:text-4xl font-extrabold mb-6 text-gray-800">
